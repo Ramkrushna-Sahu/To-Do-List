@@ -1,6 +1,6 @@
 import './App.css'
 import Todos from './components/Todos'
-import AddTodo from './components/AddTodo'
+import AddTodo from './components/addTodo'
 import { useState } from 'react'
 
 export default function App() {

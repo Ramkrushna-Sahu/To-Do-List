@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { removeTodo, toggleComplete, updateTodo } from '../features/todo/todoSlice'
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdOutlineEditNote } from "react-icons/md";
-import AddTodo from './AddTodo';
+import AddTodo from './addTodo';
 const Todos = ({update,setUpdate}) => {
     const todos = useSelector(state => state.todos)
     const dispatch = useDispatch()
