@@ -10,19 +10,21 @@ const initialState = {
 }
 
 export const todoSlice = createSlice({
-    name:'todo',
+    name: 'todo',
     initialState,
     reducers: {
-        addTodo: (state, action)=>{
+        addTodo: (state, action) => {
             const todo = {
                 id: nanoid(),
                 text: action.payload,
                 completed: false
             }
+            console.log(todo)
+            console.log(action)
             state.todos.push(todo)
             localStorage.setItem('todos', JSON.stringify(state.todos));
         },
-        removeTodo: (state, action)=>{
+        removeTodo: (state, action) => {
             state.todos = state.todos.filter(todo => todo.id !== action.payload)
             localStorage.setItem('todos', JSON.stringify(state.todos));
         },
@@ -32,9 +34,18 @@ export const todoSlice = createSlice({
                 todo.completed = !todo.completed;
                 localStorage.setItem('todos', JSON.stringify(state.todos));
             }
-          }
+        },
+        updateTodo: (state, action) => {
+            // console.log(action, action.payload)
+            state.todos = state.todos.map(todo =>
+                todo.id === action.payload.id
+                    ? { ...todo, text: action.payload.text }
+                    : todo
+            )
+            localStorage.setItem('todos', JSON.stringify(state.todos))
+        }
     }
 })
 
-export const {addTodo, removeTodo, toggleComplete} = todoSlice.actions
+export const { addTodo, removeTodo, toggleComplete, updateTodo } = todoSlice.actions
 export default todoSlice.reducer
